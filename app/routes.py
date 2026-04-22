@@ -6,7 +6,6 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 def register_routes(app):
 
-    # SIGNUP
     @app.route('/signup', methods=['POST'])
     def signup():
         data = request.json
@@ -23,7 +22,6 @@ def register_routes(app):
         return jsonify({"message": "User created"}), 201
 
 
-    # LOGIN
     @app.route('/login', methods=['POST'])
     def login():
         data = request.json
@@ -37,8 +35,6 @@ def register_routes(app):
 
         return jsonify({"token": token}), 200
 
-
-    # GET CURRENT USER (ME)
     @app.route('/me', methods=['GET'])
     @jwt_required()
     def get_me():
@@ -70,7 +66,6 @@ def register_routes(app):
         return jsonify({"message": "Note created"}), 201
 
 
-    # GET NOTES (WITH PAGINATION)
     @app.route('/notes', methods=['GET'])
     @jwt_required()
     def get_notes():
@@ -85,7 +80,6 @@ def register_routes(app):
         ])
 
 
-    # UPDATE NOTE
     @app.route('/notes/<int:id>', methods=['PATCH'])
     @jwt_required()
     def update_note(id):
@@ -105,8 +99,6 @@ def register_routes(app):
 
         return jsonify({"message": "Updated"})
 
-
-    # DELETE NOTE
     @app.route('/notes/<int:id>', methods=['DELETE'])
     @jwt_required()
     def delete_note(id):
