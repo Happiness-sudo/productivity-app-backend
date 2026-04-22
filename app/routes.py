@@ -47,7 +47,6 @@ def register_routes(app):
         })
 
 
-    # CREATE NOTE
     @app.route('/notes', methods=['POST'])
     @jwt_required()
     def create_note():
